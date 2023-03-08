@@ -1,0 +1,7 @@
+uvicorn
+pandas
+numpy
+seaborn
+pickles
+pydantic
+fastapi
