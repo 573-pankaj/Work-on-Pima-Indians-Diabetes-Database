@@ -13,7 +13,7 @@ classifier=pickle.load(pickle_in)
 # 3. Index route, opens automatically on http://127.0.0.1:8000
 @app.get('/')
 def index():
-    return {'message': 'Hello, Welcome to the prediction page'}
+    return {'message': 'Hello, Welcome to the Diabetes prediction page'}
 
 # 4. Route with a single parameter, returns the parameter within a message
 #    Located at: http://127.0.0.1:8000/AnyNameHere
@@ -22,9 +22,9 @@ def index():
 #     return {'Welcome To medical domain ': f'{name}'}
 
 # 3. Expose the prediction functionality, make a prediction from the passed
-#    JSON data and return the predicted Bank Note with the confidence
+#    JSON data and return the predicted diabetes with the confidence
 @app.post('/predict')
-def heartdisease(data:diabetesPrediction):
+def Diabetes(data:diabetesPrediction):
     data = data.dict()
     Pregnancies = data['Pregnancies']
     Glucose = data['Glucose']
@@ -34,7 +34,7 @@ def heartdisease(data:diabetesPrediction):
     BMI = data['BMI']
     DiabetesPedigreeFunction = data['DiabetesPedigreeFunction']
     Age = data['Age']
-   # print(classifier.predict([[variance,skewness,curtosis,entropy]]))
+   # print(classifier.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]]))
     prediction = classifier.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
     if(prediction[0]==1):
         prediction= "The Person has Diabetes"
