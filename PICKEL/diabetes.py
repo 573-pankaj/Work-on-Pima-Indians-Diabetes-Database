@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 # 2. Class which describes Bank Notes measurements
-class heartdisease(BaseModel):
+class diabetesPrediction(BaseModel):
     Pregnancies: int 
     Glucose: int
     BloodPressure: int 

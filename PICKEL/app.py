@@ -1,7 +1,7 @@
 # 1. Library imports
 import uvicorn
 from fastapi import FastAPI
-from heartDisease import heartdisease
+from diabetes import diabetesPrediction
 import numpy as np
 import pickle
 import pandas as pd
@@ -24,7 +24,7 @@ def index():
 # 3. Expose the prediction functionality, make a prediction from the passed
 #    JSON data and return the predicted Bank Note with the confidence
 @app.post('/predict')
-def heartdisease(data:heartdisease):
+def heartdisease(data:diabetesPrediction):
     data = data.dict()
     Pregnancies = data['Pregnancies']
     Glucose = data['Glucose']
@@ -37,9 +37,10 @@ def heartdisease(data:heartdisease):
    # print(classifier.predict([[variance,skewness,curtosis,entropy]]))
     prediction = classifier.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
     if(prediction[0]==1):
-        prediction="The Person has Heart Disease"
-    else:
-        prediction="The Person doesnot has Heart Disease"
+        prediction= "The Person has Diabetes"
+    else :
+        prediction="The Person has not Diabetes"
+    
     return {
         'prediction': prediction
     }
